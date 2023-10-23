@@ -1,18 +1,15 @@
 import argparse
+import tskit
 
-import numpy as np
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--input', required=True)
+    return parser.parse_args()
 
-# test data created with the following commands:
-#
-# >>> import numpy as np
-# >>> np.savetxt('test.txt', np.vstack([np.random.uniform(size=(100)), np.random.uniform(size=100)]).T, delimiter='\t')
+def main():
+    args = parse_args()
+    ts = tskit.load(args.input)
+    print(ts.ld_matrix())
 
-
-arg_parser = argparse.ArgumentParser()
-arg_parser.add_argument('--input', required=True)
-arg_parser.add_argument('--output', required=True)
-args = arg_parser.parse_args()
-
-with open(args.output, 'w') as out_fh:
-    print(np.loadtxt(args.input).mean(1), file=out_fh)
-    print("hi", file=out_fh)
+if __name__ == '__main__':
+    main()

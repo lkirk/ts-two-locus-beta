@@ -4,9 +4,9 @@ docker_pull_policy      = always  # this means we always pull from the docker re
 
 should_transfer_files   = YES
 when_to_transfer_output = ON_EXIT
-transfer_input_files    = ../test_data
+transfer_input_files    = <directory-containing-tree-sequence-files>
 transfer_output_files   = output.txt
-arguments               = --input test_data/test.txt --output output.txt
+arguments               = --input <path-to-tree-sequence-within-tree-sequence-directory>
 
 output                  = out.$(Process)
 error                   = err.$(Process)
